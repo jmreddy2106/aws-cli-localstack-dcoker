@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  localstack:
+    container_name: localstack_main
+    image: localstack/localstack:latest
+  ports:
+    - "4566:4566"
+    - "4510-4559:4510-4559"
+  environment:
+    - SERVICES=s3,ec2,iam,lambda,apigateway,athena,redshift,elasticache,events,cognito-idp,elbv2,efs,sqs,sns
+    - DEBUG=1
+    - DATA_DIR=/tmp/localstack/data
+  volumes:
+    - "/tmp/localstack:/tmp/localstack"
+    - "/var/run/docker.sock:/var/run/docker.sock"

@@ -6,15 +6,57 @@
 #### Install Docker Desktop https://www.docker.com/products/docker-desktop
 
 ## Verify Docker
-- docker --version
-
+```bash 
+    docker --version
+```
 ## Install LocalStack CLI
-- pip install localstack
+```bash 
+    pip install localstack
+```
 
 ## Install AWS CLI v2 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
-- aws --version
+```bash 
+    aws --version`
+```
 
 ## Install awslocal (wrapper for LocalStack)
-pip install awscli-local
+```bash 
+    pip install awscli-local
+```
+
+
+## Run the docker compose
+
+## Configure AWS CLI for LocalStack
+
+```bash 
+    aws configure
+```
+```bash
+    AWS Access Key ID: test
+    AWS Secret Access Key: test
+    Default region: us-east-1
+    Default output format: json
+```
+Add to ~/.aws/config:
+```bash
+    [profile localstack]
+    region = us-east-1
+    output = json
+    endpoint_url = http://localhost:4566
+```
+
+Note: All commands use `awslocal` (auto-points to LocalStack) OR `aws --endpoint-url=http://localhost:4566` interchangeably.
+
+
+# Run docekr compose file
+```bash
+    docker-compose up -d
+```
+
+# Verify all services are running
+```bash
+    curl http://localhost:4566/_localstack/health 
+```
 
 
